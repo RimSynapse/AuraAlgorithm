@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <StorytellerDef ParentName="BaseStoryteller">
+    <defName>Aura</defName>
+    <label>Aura Algorithm</label>
+    <description>Aura Algorithm actively monitors the narrative threads of your colony. She does not just throw random events at you; she watches your choices, evaluates the psychological state of your pawns, and crafts bespoke scenarios and quests to test your morals and sanity. Her threat scaling uses traditional colony wealth as a baseline logical cost-benefit analysis, but the frequency and type of threats are dynamically orchestrated.\n\nNOTE: Aura requires an active LLM connection to orchestrate her narrative intelligence. If the LLM becomes disconnected or unresponsive, her storytelling logic will automatically fall back to Classic Cassandra.</description>
+    <portraitLarge>UI/HeroArt/Storytellers/Synapse</portraitLarge>
+    <portraitTiny>UI/HeroArt/Storytellers/SynapseTiny</portraitTiny>
+    <listOrder>45</listOrder>
+    
+    <modExtensions>
+      <li Class="RimSynapse.StorytellerVoiceExtension">
+        <localVoicePath>Sounds/Voicebox/AuraVoice.wav</localVoicePath>
+        <elevenLabsVoiceId>pNInz6obpgDQGcFmaJgB</elevenLabsVoiceId>
+        <openAIVoiceId>nova</openAIVoiceId>
+      </li>
+    </modExtensions>
+
+    <comps>
+      <!-- Base threats and incidents -->
+      <li Class="RimSynapse.Comps.StorytellerCompProperties_Storyteller">
+        <incidentsTargetDays>10</incidentsTargetDays>
+        <threatsTargetDays>10</threatsTargetDays>
+        
+        <!-- Personality and Writing Style -->
+        <characterName>Aura</characterName>
+        <speakingStyle>sassy, dramatic, and snarky</speakingStyle>
+        
+        <!-- Daily Target Wealth Growth per Colonist Pawn Formula: Factor * (DaysPassed ^ Exponent) + Base -->
+        <targetWealthGrowthBase>1000</targetWealthGrowthBase>
+        <targetWealthGrowthFactor>0</targetWealthGrowthFactor>
+        <targetWealthGrowthExponent>1.0</targetWealthGrowthExponent>
+        
+        <!-- Pacing Flexibility: 0.0 (Strict absolute pacing target) to 1.0 (Complete flexibility, vanilla wealth-only) -->
+        <pacingFlexibility>0.15</pacingFlexibility>
+        
+        <!-- Custom True Wealth Weights -->
+        <weightItemWealth>1.0</weightItemWealth>
+        <weightBuildingWealth>1.0</weightBuildingWealth>
+        <weightPawnWealth>1.0</weightPawnWealth>
+        <weightCombatCompetence>1.5</weightCombatCompetence>
+        <weightSecurityPower>2.0</weightSecurityPower>
+        
+        <!-- Base Category Weights -->
+        <baseWeightThreatBig>2.0</baseWeightThreatBig>
+        <baseWeightThreatSmall>1.0</baseWeightThreatSmall>
+        <baseWeightDiseaseHuman>0.5</baseWeightDiseaseHuman>
+        <baseWeightMisc>3.0</baseWeightMisc>
+        <baseWeightDiseaseAnimal>0.2</baseWeightDiseaseAnimal>
+        <baseWeightOrbitalVisitor>1.0</baseWeightOrbitalVisitor>
+        <baseWeightFactionArrival>1.0</baseWeightFactionArrival>
+        
+        <!-- Hostile Faction Motivation Thresholds -->
+        <motivatedRaidGreedRatioThreshold>3.0</motivatedRaidGreedRatioThreshold>
+        <motivatedRaidBaseChance>0.2</motivatedRaidBaseChance>
+        <motivatedRaidStrengthIncrease>500.0</motivatedRaidStrengthIncrease>
+        
+        <!-- Factions Mod Integration Settings (degrades gracefully if Factions is not loaded) -->
+        <motivatedRaidPopulationDensityFactor>0.005</motivatedRaidPopulationDensityFactor>
+        <populationDensityJoinBase>0.5</populationDensityJoinBase>
+        <populationDensityJoinFactor>0.005</populationDensityJoinFactor>
+
+        <!-- Incident Weights and Descriptions -->
+        <incidentWeights>
+          <!-- ThreatBig -->
+          <li>
+            <incidentDefName>RaidEnemy</incidentDefName>
+            <baseWeight>3.0</baseWeight>
+            <description>Hostile forces attack the colony.</description>
+            <rules>
+              <li>
+                <aspect>CombatReadiness</aspect>
+                <threshold>0.8</threshold>
+                <comparison>GreaterThan</comparison>
+                <multiplier>1.3</multiplier>
+                <contextNote>The colony has ridiculously good defenses and high combat readiness, which will attract more aggressive threats.</contextNote>
+              </li>
+              <li>
+                <aspect>RecentIncidentCount</aspect>
+                <aspectKey>RaidEnemy</aspectKey>
+                <threshold>2</threshold>
+                <comparison>GreaterThan</comparison>
+                <multiplier>0.3</multiplier>
+                <contextNote>We have sent many standard raids recently; the factions are regrouping. Give them a break or try a different threat.</contextNote>
+              </li>
+              <li>
+                <aspect>LastRaidWasFailure</aspect>
+                <threshold>1</threshold>
+                <comparison>Equals</comparison>
+                <multiplier>0.3</multiplier>
+                <contextNote>The colony suffered casualties in the last raid and is currently recovering. Throttling standard hostile raids.</contextNote>
+              </li>
+              <li>
+                <aspect>LastRaidWasSuccess</aspect>
+                <threshold>1</threshold>
+                <comparison>Equals</comparison>
+                <multiplier>1.2</multiplier>
+                <contextNote>The colony defended the last raid flawlessly without colonist losses. They are well-defended; consider sending a tougher challenge next time.</contextNote>
+              </li>
+            </rules>
+          </li>
+          <li>
+            <incidentDefName>Infestation</incidentDefName>
+            <baseWeight>1.5</baseWeight>
+            <description>Dangerous insects burrow into overhead mountain roofs.</description>
+            <rules>
+              <li>
+                <aspect>RecentIncidentCount</aspect>
+                <aspectKey>Infestation</aspectKey>
+                <threshold>1</threshold>
+                <comparison>GreaterThan</comparison>
+                <multiplier>0.1</multiplier>
+                <contextNote>The underground hives are exhausted; avoid sending another infestation for now.</contextNote>
+              </li>
+            </rules>
+          </li>
+          <li>
+            <incidentDefName>ManhunterPack</incidentDefName>
+            <baseWeight>1.5</baseWeight>
+            <description>A pack of enraged, man-hunting animals arrives.</description>
+          </li>
+          <li>
+            <incidentDefName>DefoliatorShipPart</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A crashed poison ship part that kills nearby plants.</description>
+            <rules>
+              <li>
+                <aspect>RecentIncidentCount</aspect>
+                <aspectKey>DefoliatorShipPart</aspectKey>
+                <threshold>1</threshold>
+                <comparison>GreaterThan</comparison>
+                <multiplier>0.2</multiplier>
+                <contextNote>The mechanoid orbiters are depleted of drop parts; avoid sending ship parts for now.</contextNote>
+              </li>
+            </rules>
+          </li>
+          <li>
+            <incidentDefName>PsychicShipPart</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A crashed psychic ship part that drives pawns insane.</description>
+            <rules>
+              <li>
+                <aspect>RecentIncidentCount</aspect>
+                <aspectKey>PsychicShipPart</aspectKey>
+                <threshold>1</threshold>
+                <comparison>GreaterThan</comparison>
+                <multiplier>0.2</multiplier>
+                <contextNote>The mechanoid orbiters are depleted of drop parts; avoid sending ship parts for now.</contextNote>
+              </li>
+            </rules>
+          </li>
+
+          <!-- ThreatSmall -->
+          <li>
+            <incidentDefName>RaidEnemyEscape</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A small group of escaping prisoners or raiders attacks.</description>
+          </li>
+          <li>
+            <incidentDefName>AnimalMadness</incidentDefName>
+            <baseWeight>1.5</baseWeight>
+            <description>A single wild animal is driven mad by a psychic pulse.</description>
+          </li>
+
+          <!-- FactionArrival -->
+          <li>
+            <incidentDefName>TraderCaravanArrival</incidentDefName>
+            <baseWeight>2.0</baseWeight>
+            <description>A friendly trade caravan arrives with items to barter.</description>
+          </li>
+          <li>
+            <incidentDefName>VisitorGroup</incidentDefName>
+            <baseWeight>1.5</baseWeight>
+            <description>A group of friendly visitors from a nearby faction drops by.</description>
+          </li>
+          <li>
+            <incidentDefName>TravelerGroup</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A group of travelers passes through the area.</description>
+          </li>
+
+          <!-- Misc -->
+          <li>
+            <incidentDefName>WandererJoin</incidentDefName>
+            <baseWeight>2.0</baseWeight>
+            <description>A random wanderer joins the colony as a new colonist.</description>
+          </li>
+          <li>
+            <incidentDefName>SelfTame</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A wild animal on the map decides to become tamed.</description>
+          </li>
+          <li>
+            <incidentDefName>AmbrosiaSprout</incidentDefName>
+            <baseWeight>0.8</baseWeight>
+            <description>A grove of delicious, drug-producing Ambrosia sprouts nearby.</description>
+          </li>
+          <li>
+            <incidentDefName>ResourcePodCrash</incidentDefName>
+            <baseWeight>1.5</baseWeight>
+            <description>Cargo pods filled with resources crash land on the map.</description>
+          </li>
+          <li>
+            <incidentDefName>PsychicSoothe</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A global psychic wave improves the mood of one gender.</description>
+          </li>
+          <li>
+            <incidentDefName>PsychicDrone</incidentDefName>
+            <baseWeight>1.2</baseWeight>
+            <description>A global psychic wave worsens the mood of one gender.</description>
+          </li>
+          <li>
+            <incidentDefName>SolarFlare</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A solar flare disables all electrical components temporarily.</description>
+          </li>
+          <li>
+            <incidentDefName>Aurora</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A beautiful aurora lights up the sky, giving colonists a mood boost.</description>
+          </li>
+          <li>
+            <incidentDefName>MeteoriteImpact</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>A solid ore meteorite crashes down on the map.</description>
+          </li>
+          <li>
+            <incidentDefName>ShipChunkDrop</incidentDefName>
+            <baseWeight>1.2</baseWeight>
+            <description>Crashed spacecraft chunks fall, offering steel and components.</description>
+          </li>
+          <li>
+            <incidentDefName>ThrumboPasses</incidentDefName>
+            <baseWeight>0.5</baseWeight>
+            <description>A small group of rare, majestic thrumbos passes through.</description>
+          </li>
+          <li>
+            <incidentDefName>Alphabeavers</incidentDefName>
+            <baseWeight>0.6</baseWeight>
+            <description>A pack of wood-devouring alphabeavers arrives.</description>
+          </li>
+
+          <!-- DiseaseHuman -->
+          <li>
+            <incidentDefName>Disease_Flu</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>Several colonists contract the flu.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_Plague</incidentDefName>
+            <baseWeight>0.8</baseWeight>
+            <description>Several colonists contract the plague.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_Malaria</incidentDefName>
+            <baseWeight>0.8</baseWeight>
+            <description>Several colonists contract malaria.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_SleepingSickness</incidentDefName>
+            <baseWeight>0.6</baseWeight>
+            <description>Several colonists contract sleeping sickness.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_FibrousMechanites</incidentDefName>
+            <baseWeight>0.5</baseWeight>
+            <description>Several colonists are infected with beneficial but painful fibrous mechanites.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_SensoryMechanites</incidentDefName>
+            <baseWeight>0.5</baseWeight>
+            <description>Several colonists are infected with beneficial but painful sensory mechanites.</description>
+          </li>
+
+          <!-- DiseaseAnimal -->
+          <li>
+            <incidentDefName>Disease_AnimalFlu</incidentDefName>
+            <baseWeight>1.0</baseWeight>
+            <description>Several tamed animals contract the flu.</description>
+          </li>
+          <li>
+            <incidentDefName>Disease_AnimalPlague</incidentDefName>
+            <baseWeight>0.8</baseWeight>
+            <description>Several tamed animals contract the plague.</description>
+          </li>
+        </incidentWeights>
+      </li>
+      
+      <!-- Disease -->
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseHuman</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      <li Class="StorytellerCompProperties_Disease">
+        <category>DiseaseAnimal</category>
+        <minDaysPassed>9</minDaysPassed>
+      </li>
+      
+      <!-- Base generation (factions, visitors) -->
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>RaidFriendly</incident>
+        <baseIncidentsPerYear>15</baseIncidentsPerYear>
+        <minSpacingDays>0.4</minSpacingDays>
+        <fullAlliesOnly>true</fullAlliesOnly>
+        <minDanger>High</minDanger>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TraderCaravanArrival</incident>
+        <minDaysPassed>5</minDaysPassed>
+        <baseIncidentsPerYear>5</baseIncidentsPerYear>
+        <minSpacingDays>6</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>VisitorGroup</incident>
+        <minDaysPassed>3</minDaysPassed>
+        <baseIncidentsPerYear>4</baseIncidentsPerYear>
+        <minSpacingDays>5</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+      <li Class="StorytellerCompProperties_FactionInteraction">
+        <incident>TravelerGroup</incident>
+        <minDaysPassed>1</minDaysPassed>
+        <baseIncidentsPerYear>6</baseIncidentsPerYear>
+        <minSpacingDays>1</minSpacingDays>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+    </comps>
+  </StorytellerDef>
+</Defs>
