@@ -16,9 +16,9 @@ Aura Algorithm actively monitors the narrative threads of your colony. She does 
 
 ---
 
-[h2]Changelog (v0.5.0)[/h2]
+[h2]Changelog (v0.5.1)[/h2]
 [list]
-[*] [b]1.6 Pacing Updates:[/b] Rebalanced quest intervals to align with RimWorld 1.6 logical ticks.
+[*] [b]Playtest Improvements:[/b] General stability enhancements and compatibility optimizations for playtesting.
 [/list]
 
 ---
