@@ -1,3 +1,6 @@
+[b]Discord Community:[/b] [url=https://discord.gg/eVBebZ2N9s]https://discord.gg/eVBebZ2N9s[/url]
+[b]Version:[/b] v0.5.1 (Target: RimWorld 1.6)
+
 [h1]RimSynapse - Aura Storyteller Algorithm[/h1]
 [b]The narrative director that dynamically shifts threats based on your choices and sanity using local Large Language Models.[/b]
 
@@ -31,6 +34,6 @@ Aura Algorithm actively monitors the narrative threads of your colony. She does 
 
 ---
 
-[h2]Open Source & Support[/h2]
+[h2]Open Source and Support[/h2]
 GitHub: [url]https://github.com/RimSynapse/Core[/url]
 Buy me a coffee: [url]https://buymeacoffee.com/archdukejim[/url]
