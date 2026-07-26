@@ -2,6 +2,7 @@
 [b]Version:[/b] v0.5.2 (Target: RimWorld 1.6)
 
 [h1]RimSynapse - Aura Storyteller Algorithm[/h1]
+[b][url=https://github.com/RimSynapse/Core/wiki]Official Wiki and Documentation[/url][/b]
 [b]The narrative director that dynamically shifts threats based on your choices and sanity using local Large Language Models.[/b]
 
 Meet Aura (The AI Storyteller!)
