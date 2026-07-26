@@ -1,0 +1,58 @@
+[b]Discord Community:[/b] [url=https://discord.gg/eVBebZ2N9s]https://discord.gg/eVBebZ2N9s[/url]
+[b]Version:[/b] v0.5.2 (Target: RimWorld 1.6)
+
+[h1]RimSynapse - Aura Storyteller Algorithm[/h1]
+[b]The narrative director that dynamically shifts threats based on your choices and sanity using local Large Language Models.[/b]
+
+Meet Aura (The AI Storyteller!)
+Aura Algorithm actively monitors the narrative threads of your colony. She does not just throw random events at you; she watches your choices, evaluates the psychological state of your pawns, and crafts bespoke scenarios and quests to test your morals and sanity. Her threat scaling uses traditional colony wealth as a baseline logical cost-benefit analysis, but the frequency and type of threats are dynamically orchestrated.
+
+[i]NOTE: Aura requires an active LLM connection to orchestrate her narrative intelligence. If the LLM becomes disconnected or unresponsive, her storytelling logic will automatically fall back to Classic Cassandra.[/i]
+
+---
+
+[h2]Key Features[/h2]
+[list]
+[*] [b]Morality-Based Storytelling:[/b] Quests and threat types scale based on psychological tensions rather than just raw silver wealth.
+[*] [b]Cassandra Fallback Protection:[/b] Storytelling logic automatically shifts back to Classic Cassandra if the LLM server goes offline.
+[/list]
+
+---
+
+[h2]Roadmap[/h2]
+[list]
+[*] [b]0.6 - Agent and Tool Foundation:[/b] An in-game agent that plans and carries out multi-step actions on its own, backed by a growing library of tools it can query for colony, faction and world state.
+[*] [b]0.7 - Logic Externalization:[/b] Retiring hardcoded thresholds so the storyteller reasons about your colony's situation instead of following fixed rules.
+[*] [b]0.8 - Emergent Systems and Content:[/b] Faction archetypes for each DLC, caravans that travel the world map, settlement crises, faction capitals and travelling leaders, and richer colonist social dynamics.
+[/list]
+These ship when they are ready - no dates.
+
+---
+
+[h2]Changelog (v0.5.2)[/h2]
+[list]
+[*] [b]FIXED - Startup warning:[/b] The RimSynapse Core dependency now lists its download and Workshop links, clearing a warning shown when the game loads mods.
+[*] [b]Licence:[/b] Now PolyForm Noncommercial 1.0.0. Free to use, modify and share for any noncommercial purpose.
+[/list]
+
+---
+
+[h2]Changelog (v0.5.1)[/h2]
+[list]
+[*] [b]Playtest Improvements:[/b] General stability enhancements and compatibility optimizations for playtesting.
+[/list]
+
+---
+
+[h2]Requirements[/h2]
+[list]
+[*] RimSynapse - Core (Must be loaded before this mod)
+[*] Harmony
+[/list]
+
+---
+
+[h2]Source Code and Support[/h2]
+GitHub: [url]https://github.com/RimSynapse/Core[/url]
+Licence: [url=https://polyformproject.org/licenses/noncommercial/1.0.0/]PolyForm Noncommercial License 1.0.0[/url] - free for any noncommercial use.
+Buy me a coffee: [url]https://buymeacoffee.com/archdukejim[/url]
