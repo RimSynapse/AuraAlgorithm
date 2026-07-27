@@ -4,7 +4,7 @@
     <author>RimSynapse Team</author>
     <packageId>RimSynapse.AuraAlgorithm</packageId>
     <url>https://github.com/RimSynapse/AuraAlgorithm</url>
-    <modVersion>0.6.0</modVersion>
+    <modVersion>0.6.1</modVersion>
     <supportedVersions>
         <li>1.5</li>
         <li>1.6</li>
@@ -29,7 +29,7 @@
     </loadAfter>
     <description>
 Discord Community: https://discord.gg/eVBebZ2N9s
-Version: v0.5.2 (Target: RimWorld 1.6)
+Version: v0.6.1 (Target: RimWorld 1.6)
 
 RimSynapse - Aura Algorithm
 Official Wiki and Documentation: https://github.com/RimSynapse/Core/wiki
@@ -38,5 +38,14 @@ Meet Aura (The AI Storyteller!)
 Aura Algorithm actively monitors the narrative threads of your colony. She does not just throw random events at you; she watches your choices, evaluates the psychological state of your pawns, and crafts bespoke scenarios and quests to test your morals and sanity. Her threat scaling uses traditional colony wealth as a baseline logical cost-benefit analysis, but the frequency and type of threats are dynamically orchestrated.
 
 NOTE: Aura requires an active LLM connection to orchestrate her narrative intelligence. If the LLM becomes disconnected or unresponsive, her storytelling logic will automatically fall back to Classic Cassandra.
+
+--- Changelog ---
+v0.6.1
+- Fixed: the in-game mod list showed v0.5.2 with no 0.6.0 notes; version and changelog now agree everywhere
+- Roadmap updated: 0.7 is Regions and Territories compatibility (groundwork for Factions, which will require Empire)
+v0.6.0
+- Moves in step with RimSynapse Core v0.6.0 (Agent and Tool Foundation)
+- Requires Core v0.6.0; saves and settings carry over unchanged
+- In-game wiki guides updated; "MCP" renamed to game tools throughout
     </description>
 </ModMetaData>
