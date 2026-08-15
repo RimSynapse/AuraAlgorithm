@@ -1,5 +1,5 @@
 [b]Discord Community:[/b] [url=https://discord.gg/eVBebZ2N9s]https://discord.gg/eVBebZ2N9s[/url]
-[b]Version:[/b] v0.7.0 (Target: RimWorld 1.6)
+[b]Version:[/b] v0.8.0 (Target: RimWorld 1.6)
 
 [h1]RimSynapse - Aura Storyteller Algorithm[/h1]
 [b][url=https://github.com/RimSynapse/Core/wiki]Official Wiki and Documentation[/url][/b]
@@ -22,13 +22,18 @@ Aura Algorithm actively monitors the narrative threads of your colony. She does 
 
 [h2]Roadmap[/h2]
 [list]
-[*] [b]0.8 - Demographics, News and Narrative Voice:[/b] Aura's own personality - moving aspect-checking out of hardcoded C# into prompt-driven tool direction, so the narrative voice reasons instead of following fixed rules.
 [*] [b]0.9 - Factions and Living Societies:[/b] Aura narrating faction and ideological events as they unfold.
 [*] [b]0.10 - Cross-Mod Capability Passes:[/b] Another pass over Aura's voice across every module's events.
 [/list]
 These ship when they are ready - no dates.
 
 ---
+
+[h2]Changelog (v0.8.0) - Compatibility Manifest and Independent Versioning[/h2]
+[list]
+[*] NEW - Added the cross-mod compatibility manifest, so RimSynapse Core can verify at load that AuraAlgorithm's version is compatible with the rest of the installed set (interoperable with the community "Version Checker" mod).
+[*] From 0.8 onward, RimSynapse mods version and release independently rather than in lockstep.
+[/list]
 
 [h2]Changelog (v0.7.0) - Regions and Territories Compatibility[/h2]
 [list]
