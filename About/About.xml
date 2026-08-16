@@ -32,7 +32,7 @@ Discord Community: https://discord.gg/eVBebZ2N9s
 Version: v0.8.0 (Target: RimWorld 1.6)
 
 RimSynapse - Aura Algorithm
-Official Wiki and Documentation: https://github.com/RimSynapse/Core/wiki
+Official Wiki and Documentation: https://github.com/RimSynapse/AuraAlgorithm/wiki
 
 Meet Aura (The AI Storyteller!)
 Aura Algorithm actively monitors the narrative threads of your colony. She does not just throw random events at you; she watches your choices, evaluates the psychological state of your pawns, and crafts bespoke scenarios and quests to test your morals and sanity. Her threat scaling uses traditional colony wealth as a baseline logical cost-benefit analysis, but the frequency and type of threats are dynamically orchestrated.
@@ -40,8 +40,8 @@ Aura Algorithm actively monitors the narrative threads of your colony. She does 
 NOTE: Aura requires an active LLM connection to orchestrate her narrative intelligence. If the LLM becomes disconnected or unresponsive, her storytelling logic will automatically fall back to Classic Cassandra.
 
 --- Roadmap ---
-0.9 - Factions and Living Societies: Aura narrating faction and ideological events as they unfold.
-0.10 - Cross-Mod Capability Passes: Another pass over Aura's voice across every module's events.
+0.9 - Story Arcs and Season-Aware Pacing: Multi-event narrative threads (setup, foreshadow, payoff), season- and biome-tuned incident weights, an expanded pacing-aspect vocabulary (wealth trajectory, mood trend, prisoner load, trade standing), and short Aura commentary between incidents for foreshadowing.
+0.10 - Preset Difficulties and Mid-Crisis Pacing: Preset Aura variants (Peaceful, Standard, Chaos) as sibling storytellers with pre-tuned weights, plus an ongoing-crisis detector that defers new major threats until the current one resolves.
 These ship when they are ready - no dates.
 
 --- Changelog (v0.8.0) - Compatibility Manifest and Independent Versioning ---
