@@ -2,6 +2,10 @@
 
 Full version history for RimSynapse - Aura Algorithm. The mod page and Workshop description show only the latest release; every earlier version is recorded here.
 
+## v0.9.0 - Aura Finds Her Voice
+- NEW - Aura's personality profile now lives in the storyteller def: a theatrical narrator who treats your colony as her ongoing serial drama. Core 0.9 injects it into both her storytelling decisions and the new player-storyteller chat, so she decides and speaks in one consistent character.
+- Requires RimSynapse Core v0.9.0 (the LLM incident-selection engine, difficulty mood mandate, and chat window Aura runs on all ship there).
+
 ## v0.7.0 - Regions and Territories Compatibility
 - Moves in step with RimSynapse Core v0.7.0.
 - Requires Core v0.7.0; saves and settings carry over unchanged.

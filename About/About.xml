@@ -4,7 +4,7 @@
     <author>RimSynapse Team</author>
     <packageId>RimSynapse.AuraAlgorithm</packageId>
     <url>https://github.com/RimSynapse/AuraAlgorithm</url>
-    <modVersion>0.8.0</modVersion>
+    <modVersion>0.9.0</modVersion>
     <supportedVersions>
         <li>1.5</li>
         <li>1.6</li>
@@ -29,7 +29,7 @@
     </loadAfter>
     <description>
 Discord Community: https://discord.gg/eVBebZ2N9s
-Version: v0.8.0 (Target: RimWorld 1.6)
+Version: v0.9.0 (Target: RimWorld 1.6)
 
 RimSynapse - Aura Algorithm
 Official Wiki and Documentation: https://github.com/RimSynapse/AuraAlgorithm/wiki
@@ -44,13 +44,9 @@ NOTE: Aura requires an active LLM connection to orchestrate her narrative intell
 0.10 - Preset Difficulties and Mid-Crisis Pacing: Preset Aura variants (Peaceful, Standard, Chaos) as sibling storytellers with pre-tuned weights, plus an ongoing-crisis detector that defers new major threats until the current one resolves.
 These ship when they are ready - no dates.
 
---- Changelog (v0.8.0) - Compatibility Manifest and Independent Versioning ---
-- NEW - Added the cross-mod compatibility manifest, so RimSynapse Core can verify at load that AuraAlgorithm's version is compatible with the rest of the installed set (interoperable with the community "Version Checker" mod).
-- From 0.8 onward, RimSynapse mods version and release independently rather than in lockstep.
-
---- Changelog (v0.7.0) - Regions and Territories Compatibility ---
-- Moves in step with RimSynapse Core v0.7.0.
-- Requires Core v0.7.0; saves and settings carry over unchanged.
+--- Changelog (v0.9.0) - Aura Finds Her Voice ---
+- NEW - Aura's personality profile now lives in the storyteller def: a theatrical narrator who treats your colony as her ongoing serial drama. Core 0.9 injects it into both her storytelling decisions and the new player-storyteller chat, so she decides and speaks in one consistent character.
+- Requires RimSynapse Core v0.9.0 (the LLM incident-selection engine, difficulty mood mandate, and chat window Aura runs on all ship there).
 
 Full version history: https://github.com/RimSynapse/AuraAlgorithm/wiki/Changelog
     </description>
